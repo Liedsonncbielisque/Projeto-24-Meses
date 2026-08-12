@@ -1,0 +1,103 @@
+<!-- views/dashboard.html — Início -->
+<header class="page-header">
+  <h1 class="page-header__title">Nossa jornada</h1>
+  <p class="page-header__subtitle">24 meses para construir algo nosso.</p>
+</header>
+
+<section class="stat-grid" aria-label="Resumo da jornada">
+  <div class="card">
+    <p class="card__label">Mês atual</p>
+    <p class="card__value">MÊS <span id="dash-month">--</span></p>
+    <p class="card__hint" id="dash-month-total">de 24</p>
+  </div>
+  <div class="card">
+    <p class="card__label">Total guardado</p>
+    <p class="card__value" id="dash-saved">R$ 0</p>
+    <p class="card__hint card__hint--green" id="dash-saved-month"></p>
+  </div>
+  <div class="card">
+    <p class="card__label">Meta</p>
+    <p class="card__value" id="dash-goal">R$ 0</p>
+    <p class="card__hint" id="dash-goal-percent"></p>
+  </div>
+  <div class="card">
+    <p class="card__label">Falta</p>
+    <p class="card__value" id="dash-remaining">R$ 0</p>
+    <p class="card__hint">para alcançar nossa meta</p>
+  </div>
+</section>
+
+<section class="card card--glow evolution" aria-label="Nossa evolução financeira">
+  <h2 class="panel-title">Nossa evolução</h2>
+  <div class="evolution__top">
+    <div>
+      <span class="evolution__saved" id="evo-saved">R$ 0</span>
+      <span class="evolution__of" id="evo-goal"></span>
+    </div>
+    <span class="evolution__percent" id="evo-percent">0%</span>
+  </div>
+  <div class="progress" role="progressbar" aria-label="Progresso da meta">
+    <div class="progress__bar" id="evo-bar" style="width:0%"></div>
+  </div>
+  <p class="evolution__missing" id="evo-missing"></p>
+
+  <div class="metric-row">
+    <div class="metric">
+      <p class="metric__label">Média mensal real</p>
+      <p class="metric__value" id="metric-avg">—</p>
+    </div>
+    <div class="metric">
+      <p class="metric__label">Precisamos guardar</p>
+      <p class="metric__value metric__value--green" id="metric-needed">—</p>
+    </div>
+    <div class="metric">
+      <p class="metric__label">Meses restantes</p>
+      <p class="metric__value" id="metric-months-left">—</p>
+    </div>
+    <div class="metric">
+      <p class="metric__label">Chegamos na meta em</p>
+      <p class="metric__value metric__value--gold" id="metric-arrival">—</p>
+    </div>
+  </div>
+</section>
+
+<div class="dashboard-grid">
+  <section class="card chart-box" aria-label="Projeção financeira">
+    <h2 class="panel-title">Ritmo atual × Meta</h2>
+    <canvas id="pace-chart" aria-label="Gráfico comparando ritmo atual com a meta"></canvas>
+    <div class="metric-row">
+      <div class="metric">
+        <p class="metric__label">No ritmo atual</p>
+        <p class="metric__value" id="proj-current">—</p>
+      </div>
+      <div class="metric">
+        <p class="metric__label">Meta</p>
+        <p class="metric__value" id="proj-goal">—</p>
+      </div>
+      <div class="metric">
+        <p class="metric__label">Diferença</p>
+        <p class="metric__value" id="proj-diff">—</p>
+      </div>
+    </div>
+  </section>
+
+  <div style="display:flex; flex-direction:column; gap:20px;">
+    <section class="card" id="next-outing" aria-label="Próxima experiência">
+      <p class="next-outing__heart">♥ Próxima experiência</p>
+      <p class="next-outing__name">—</p>
+      <p class="card__hint next-outing__text"></p>
+      <a class="btn btn--primary" href="#/saidas" style="margin-top:16px;">Ver roleta</a>
+    </section>
+
+    <section class="card" aria-label="Conquistas">
+      <h2 class="panel-title">Conquistas</h2>
+      <ul class="achievement-list" id="achievement-list"></ul>
+      <p class="card__hint card__hint--gold" id="ach-progress" style="margin-top:12px;"></p>
+    </section>
+  </div>
+</div>
+
+<footer class="quote">
+  <p class="quote__month" id="quote-month"></p>
+  <em>"Mais um mês construindo nosso futuro."</em>
+</footer>

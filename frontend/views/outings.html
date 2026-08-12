@@ -1,0 +1,31 @@
+<!-- views/outings.html — Nossas Saídas -->
+<header class="page-header">
+  <h1 class="page-header__title">Onde vamos?</h1>
+  <p class="page-header__subtitle">Uma escolha. Uma experiência. Uma memória.</p>
+</header>
+
+<div class="roulette-stats" aria-label="Resumo das experiências">
+  <div class="roulette-stat"><strong id="stat-total">44</strong><span>experiências no total</span></div>
+  <div class="roulette-stat"><strong id="stat-done" style="color:var(--green)">0</strong><span>realizadas</span></div>
+  <div class="roulette-stat"><strong id="stat-left" style="color:var(--rose)">44</strong><span>restantes</span></div>
+</div>
+
+<section class="roulette-stage">
+  <div class="wheel-wrap">
+    <div class="wheel-pointer" aria-hidden="true"></div>
+    <canvas id="wheel-canvas" role="img" aria-label="Roleta das experiências disponíveis"></canvas>
+    <div class="wheel-hub" aria-hidden="true">♥</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; gap:22px; width:100%;">
+    <div class="card roulette-result" id="roulette-result" aria-live="polite"></div>
+    <button class="btn btn--primary btn--lg anim-glow" id="spin-button" type="button">
+      SORTEAR NOSSA SAÍDA
+    </button>
+  </div>
+</section>
+
+<section aria-label="Todas as experiências">
+  <h2 class="panel-title">As 44 experiências</h2>
+  <div class="outing-grid" id="outing-list"></div>
+</section>

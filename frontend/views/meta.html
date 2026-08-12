@@ -1,0 +1,80 @@
+<!-- views/meta.html — Meta 24 Meses -->
+<header class="page-header">
+  <h1 class="page-header__title">Nossa Meta</h1>
+  <p class="page-header__subtitle">O plano que sustenta a jornada.</p>
+</header>
+
+<div class="meta-layout">
+  <!-- Planejamento -->
+  <section class="card" aria-label="Planejamento da meta">
+    <p class="card__label">Meta total</p>
+    <p class="card__value" id="meta-total">R$ 0</p>
+    <p class="card__hint" id="meta-summary"></p>
+
+    <form id="meta-form" style="margin-top:22px;">
+      <div class="field">
+        <label for="meta-input-total">Meta financeira (R$)</label>
+        <input id="meta-input-total" name="metaTotal" type="number" min="1" step="100" required />
+      </div>
+      <div class="field">
+        <label for="meta-input-inicial">Valor inicial (R$)</label>
+        <input id="meta-input-inicial" name="valorInicial" type="number" min="0" step="50" />
+      </div>
+      <div class="field">
+        <label for="meta-input-inicio">Mês de início</label>
+        <input id="meta-input-inicio" name="startMonth" type="month" required />
+      </div>
+      <div class="field">
+        <label for="meta-input-meses">Duração (meses)</label>
+        <input id="meta-input-meses" name="totalMeses" type="number" min="1" max="60" required />
+      </div>
+      <div class="field">
+        <label for="meta-input-mensal">Valor mensal planejado (R$)</label>
+        <input id="meta-input-mensal" name="valorMensalPlanejado" type="number" min="0" step="50" />
+      </div>
+      <button class="btn btn--primary" type="submit" style="width:100%;">Salvar planejamento</button>
+    </form>
+  </section>
+
+  <!-- Timeline + registro -->
+  <div style="display:flex; flex-direction:column; gap:20px; min-width:0;">
+    <section class="card" aria-label="Timeline dos meses">
+      <h2 class="panel-title">Timeline dos 24 meses</h2>
+      <p class="card__hint" style="margin-bottom:14px;">Toque em um mês para registrar o valor guardado.</p>
+      <ol class="timeline" id="month-timeline"></ol>
+    </section>
+
+    <section class="card card--glow" id="month-record" hidden aria-label="Registro mensal">
+      <h2 class="panel-title" id="month-record-title">Registrar mês</h2>
+      <form id="month-form">
+        <div class="field">
+          <label for="month-planned">Valor planejado (R$)</label>
+          <input id="month-planned" name="planned" type="number" min="0" step="50" />
+        </div>
+        <div class="field">
+          <label for="month-saved">Valor guardado (R$)</label>
+          <input id="month-saved" name="saved" type="number" min="0" step="10" placeholder="Deixe vazio para limpar" />
+        </div>
+        <div class="field">
+          <label for="month-note">Observação</label>
+          <textarea id="month-note" name="note" rows="2" placeholder="Como foi esse mês?"></textarea>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn btn--primary" type="submit">Salvar registro</button>
+          <button class="btn btn--ghost" type="button" id="month-cancel">Cancelar</button>
+        </div>
+      </form>
+    </section>
+  </div>
+</div>
+
+<div class="charts-grid">
+  <section class="card chart-box" aria-label="Gráfico planejado versus realizado">
+    <h2 class="panel-title">Planejado × Realizado</h2>
+    <canvas id="chart-planned-actual"></canvas>
+  </section>
+  <section class="card chart-box" aria-label="Gráfico de evolução acumulada">
+    <h2 class="panel-title">Evolução acumulada</h2>
+    <canvas id="chart-cumulative"></canvas>
+  </section>
+</div>
