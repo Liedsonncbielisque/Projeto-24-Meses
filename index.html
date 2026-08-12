@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nosso Projeto — 24 meses: jornada financeira, experiências e memórias do casal." />
+  <title>Nosso Projeto — 24 Meses</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="frontend/css/main.css" />
+  <link rel="stylesheet" href="frontend/css/components.css" />
+  <link rel="stylesheet" href="frontend/css/pages.css" />
+  <link rel="stylesheet" href="frontend/css/animations.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#view-container">Ir para o conteúdo</a>
+
+  <div class="app-shell">
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" id="sidebar" aria-label="Navegação principal">
+      <div class="sidebar__brand">
+        <span class="sidebar__logo" aria-hidden="true">♥</span>
+        <div>
+          <strong class="sidebar__title">Nosso Projeto</strong>
+          <span class="sidebar__subtitle">24 meses</span>
+        </div>
+      </div>
+
+      <p class="sidebar__section">Jornada</p>
+
+      <nav class="sidebar__nav">
+        <a href="#/inicio"   class="nav-link" data-route="/inicio">   <span aria-hidden="true">⌂</span> Início</a>
+        <a href="#/saidas"   class="nav-link" data-route="/saidas">   <span aria-hidden="true">♡</span> Nossas Saídas</a>
+        <a href="#/meta"     class="nav-link" data-route="/meta">     <span aria-hidden="true">◈</span> Meta 24 Meses</a>
+        <a href="#/historia" class="nav-link" data-route="/historia"> <span aria-hidden="true">◷</span> Nossa História</a>
+      </nav>
+
+      <div class="sidebar__divider" role="presentation"></div>
+
+      <div class="sidebar__journey" aria-label="Progresso da jornada">
+        <p class="sidebar__journey-label">Nossa jornada</p>
+        <div class="progress progress--sm">
+          <div class="progress__bar" id="sidebar-progress" style="width:0%"></div>
+        </div>
+        <p class="sidebar__journey-meta">
+          <span id="sidebar-percent">0%</span>
+          <span id="sidebar-month">Mês 1 / 24</span>
+        </p>
+      </div>
+
+      <div class="sidebar__divider" role="presentation"></div>
+
+      <button class="nav-link nav-link--button" id="open-settings" type="button">
+        <span aria-hidden="true">⚙</span> Configurações
+      </button>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebar-overlay" hidden></div>
+
+    <!-- ============ CONTEÚDO ============ -->
+    <div class="app-main">
+      <header class="topbar">
+        <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="sidebar">
+          <span></span><span></span><span></span>
+        </button>
+        <span class="topbar__brand">♥ Nosso Projeto</span>
+      </header>
+
+      <main id="view-container" class="view-container" tabindex="-1" aria-live="polite"></main>
+    </div>
+  </div>
+
+  <!-- ============ MODAL DE CONFIGURAÇÕES ============ -->
+  <div class="modal" id="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__panel">
+      <header class="modal__header">
+        <h2 id="settings-title">Configurações</h2>
+        <button class="icon-button" type="button" data-close-modal aria-label="Fechar configurações">✕</button>
+      </header>
+
+      <form id="settings-form" class="modal__body">
+        <div class="field">
+          <label for="cfg-meta">Meta financeira (R$)</label>
+          <input id="cfg-meta" name="metaTotal" type="number" min="1" step="100" required />
+        </div>
+        <div class="field">
+          <label for="cfg-inicial">Valor inicial (R$)</label>
+          <input id="cfg-inicial" name="valorInicial" type="number" min="0" step="50" />
+        </div>
+        <div class="field">
+          <label for="cfg-inicio">Mês de início</label>
+          <input id="cfg-inicio" name="startMonth" type="month" required />
+        </div>
+        <div class="field">
+          <label for="cfg-meses">Quantidade de meses</label>
+          <input id="cfg-meses" name="totalMeses" type="number" min="1" max="60" required />
+        </div>
+        <div class="field">
+          <label for="cfg-mensal">Valor mensal planejado (R$)</label>
+          <input id="cfg-mensal" name="valorMensalPlanejado" type="number" min="0" step="50" />
+        </div>
+        <div class="field">
+          <label for="cfg-tema">Tema</label>
+          <select id="cfg-tema" name="theme">
+            <option value="dark">Escuro (padrão)</option>
+            <option value="midnight">Midnight</option>
+          </select>
+        </div>
+
+        <div class="modal__actions">
+          <button class="btn btn--primary" type="submit">Salvar configurações</button>
+        </div>
+      </form>
+
+      <div class="modal__body modal__body--tools">
+        <h3 class="modal__subtitle">Dados</h3>
+        <div class="modal__tools">
+          <button class="btn btn--ghost" id="export-data" type="button">⬇ Exportar meus dados</button>
+          <label class="btn btn--ghost" for="import-data-input">⬆ Importar backup</label>
+          <input id="import-data-input" type="file" accept="application/json" hidden />
+          <button class="btn btn--danger" id="reset-project" type="button">Resetar projeto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="false"></div>
+
+  <script type="module" src="frontend/js/app.js"></script>
+</body>
+</html>

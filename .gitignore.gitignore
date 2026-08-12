@@ -1,0 +1,16 @@
+# Dependências (caso um bundler seja adotado futuramente)
+node_modules/
+
+# SO
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Backups locais de dados do casal — nunca versionar
+nosso-projeto-backup.json
